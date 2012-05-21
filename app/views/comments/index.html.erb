@@ -1,4 +1,4 @@
-<h1>Listing comments</h1>
+<h1>Topic <%= @topic.title %></h1>
 
 <table>
   <tr>
@@ -11,13 +11,13 @@
 <% @comments.each do |comment| %>
   <tr>
     <td><%= comment.body %></td>
-    <td><%= link_to 'Show', comment %></td>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', [comment.topic, comment] %></td>
+    <td><%= link_to 'Edit', edit_topic_comment_path(comment.topic, comment) %></td>
+    <td><%= link_to 'Destroy', [comment.topic, comment], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Comment', new_comment_path %>
+<%= link_to 'New Comment', new_topic_comment_path(@topic) %>
