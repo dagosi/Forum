@@ -1,10 +1,12 @@
 Forum::Application.routes.draw do
 
+  devise_for :users
+
   resources :topics do
     resources :comments
   end
 
 
-  # root :to => 'welcome#index'
+  root :to => 'topics#index'
 
 end
