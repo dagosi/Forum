@@ -7,6 +7,6 @@ Forum::Application.routes.draw do
   end
 
 
-  root :to => 'topics#index'
+  root :to => 'home#index'
 
 end
