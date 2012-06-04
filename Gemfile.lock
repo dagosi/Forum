@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:dagosi89/social_login.git
-  revision: 885917301de69fbf9735835b2f5c884847332f8d
+  revision: c7c56d076a93d7e1a8d64bbe5a0edee8033eb443
   specs:
-    social_login (1.0.0beta)
+    social_login (1.0.2beta)
 
 GEM
   remote: https://rubygems.org/
