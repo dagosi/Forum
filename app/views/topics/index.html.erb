@@ -1,23 +1,22 @@
-<h1>Listing topics</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Topics</h1>
 
 <% @topics.each do |topic| %>
-  <tr>
-    <td><%= topic.title %></td>
-    <td><%= topic.author %></td>
-    <td><%= link_to 'Show', topic %></td>
-    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-    <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
-    <td><%= link_to 'Comments', topic_comments_path(topic) %></td>
-  </tr>
+  <p><strong>Title: </strong><%= topic.title %></p>
+  <p><strong>Author: </strong><%= topic.author %></p>
+  <p><%=topic.body %></p>
+  <%= link_to 'Edit', edit_topic_path(topic) %>
+  <%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %>
+  <%= link_to 'Make a comment.', new_topic_comment_path(topic) %><br />
+  
+  <h3>Comments</h3>
+  <% topic.comments.each do |comment| %>
+    <fieldset>
+      <p><strong>Author: </strong><%= comment.author %></p>
+      <p><%= comment.body %></p>
+    </fieldset>
+  <% end %>
+  
+  
 <% end %>
 </table>
 

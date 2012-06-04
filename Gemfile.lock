@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:dagosi89/social_login.git
-  revision: f1034b5bdee4dadd3516a7264631e588e96fb4da
+  revision: 885917301de69fbf9735835b2f5c884847332f8d
   specs:
     social_login (1.0.0beta)
 

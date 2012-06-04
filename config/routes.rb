@@ -5,7 +5,7 @@ Forum::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
 
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   resources :topics do
     resources :comments

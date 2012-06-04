@@ -40,26 +40,15 @@ class AuthenticationsController < ApplicationController
   # POST /authentications
   # POST /authentications.json
   def create
-    omniauth = request.env['omniauth.auth']
-    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-    if authentication
-      flash[:notice] = "Singned in successfully."
-      sign_in :user, authentication.user
-      redirect_to topics_url
-    elsif current_user
-      current_user.authentications.create(provider: omniauth['provider'], uid: omniauth['uid'])
-      flash[:notice] = "Authentication successful."
-      redirect_to topics_url
-    else
-      user = User.new
-      user.apply_omniauth(omniauth)
-      if user.save
-        flash[:notice] = "Signed in successfully."
-        sign_in :user, user
-        redirect_to topics_url
+    @authentication = Authentication.new(params[:authentication])
+
+    respond_to do |format|
+      if @authentication.save
+        format.html { redirect_to @authentication, notice: 'Authentication was successfully created.' }
+        format.json { render json: @authentication, status: :created, location: @authentication }
       else
-        session[:omniauth] = omniauth.except('extra')
-        redirect_to new_user_registration_url
+        format.html { render action: "new" }
+        format.json { render json: @authentication.errors, status: :unprocessable_entity }
       end
     end
   end

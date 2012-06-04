@@ -12,6 +12,7 @@
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, method: :delete %><br />
     <h1><%= link_to "Topics", topics_path %></h1><br />
+
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or
     <%= link_to "Sign in", new_user_session_path %>
@@ -19,6 +20,6 @@
 
   <%= yield %>
 
-
+    <%= render "authentications/auth" %>
 </body>
 </html>

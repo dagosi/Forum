@@ -31,9 +31,10 @@ class CommentsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @comment = @topic.comments.build(params[:comment])
+    @comment.author = current_user.email
 
     if @comment.save
-        redirect_to topic_comments_url(@topic), notice: 'Comment was successfully created.'
+        redirect_to topics_url, notice: 'Comment was successfully created.'
       else
         render action: "new"
     end
