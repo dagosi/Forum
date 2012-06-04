@@ -11,6 +11,7 @@ gem 'omniauth-linkedin'
 gem 'sqlite3'
 gem 'devise'
 gem 'social_login', :git => "git@github.com:dagosi89/social_login.git"
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
