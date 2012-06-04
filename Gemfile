@@ -8,7 +8,6 @@ gem 'omniauth-linkedin'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'devise'
 gem 'social_login', :git => "git@github.com:dagosi89/social_login.git"
 gem 'pg'
@@ -42,3 +41,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+
+group :development do
+  gem 'sqlite3'
+  gem 'heroku'
+end
