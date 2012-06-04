@@ -11,7 +11,7 @@
   
   <%= link_to 'New Comment', new_topic_comment_path(topic), :class => 'btn btn-mini' %>
 
-  <% if topic.author == current_user.email %>
+  <% if topic.author == current_user.email || current_user.email == 'admin@admin.com' %>
     
     <%= link_to t('.edit', :default => t("helpers.links.edit")),
         edit_topic_path(topic), :class => 'btn btn-mini' %>
@@ -34,7 +34,7 @@
       <p><%= comment.body %></p>
     </fieldset>
 
-    <% if comment.author == current_user.email %>
+    <% if comment.author == current_user.email  || current_user.email == 'admin@admin.com' %>
       <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_topic_comment_path(topic, comment), :class => 'btn btn-mini' %>
       
@@ -52,9 +52,9 @@
 
   <hr>
 <% end %>
+ 
+<%= link_to "New Topic", new_topic_path, :class => 'btn btn-primary' %>
 
 <br />
 <br />
 <br />
- 
-<%= link_to "New Topic", new_topic_path, :class => 'btn btn-primary' %>

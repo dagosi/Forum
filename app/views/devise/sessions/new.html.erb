@@ -1,4 +1,4 @@
-<h2>Sign in</h2>
+<h2>Sign in as admin</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -14,4 +14,8 @@
   <div><%= f.submit "Sign in" %></div>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<h2>If you are not an admin</h2>
+
+<%= render "authentications/auth" %><br /><br />
+
+<!-- <%= render :partial => "devise/shared/links" %> -->

@@ -21,10 +21,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">Forum</a>
+	<%= link_to "Forum", root_path, class: "brand"%>
         <div class="nav-collapse">
           <ul class="nav pull-right">
 	    <% if user_signed_in? %>
+	      <li><%= link_to "Topics", topics_path %></li>
 	      <li><%= link_to "Signed in as #{current_user.email}" %> </li>
 	      <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 	    <% else %>
@@ -41,6 +42,5 @@
   <div class="container">
     <%= yield %>
   </div>
-    <%= render "authentications/auth" %>
 </body>
 </html>
