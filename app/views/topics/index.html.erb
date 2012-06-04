@@ -1,25 +1,60 @@
-<h1>Topics</h1>
+<%- model_class = Topic.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
 
 <% @topics.each do |topic| %>
-  <p><strong>Title: </strong><%= topic.title %></p>
+
   <p><strong>Author: </strong><%= topic.author %></p>
-  <p><%=topic.body %></p>
-  <%= link_to 'Edit', edit_topic_path(topic) %>
-  <%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %>
-  <%= link_to 'Make a comment.', new_topic_comment_path(topic) %><br />
+  <p><strong>Title: </strong><%= topic.title %></p>
+  <p><%= topic.body %></p>
   
+  <%= link_to 'New Comment', new_topic_comment_path(topic), :class => 'btn btn-mini' %>
+
+  <% if topic.author == current_user.email %>
+    
+    <%= link_to t('.edit', :default => t("helpers.links.edit")),
+        edit_topic_path(topic), :class => 'btn btn-mini' %>
+    
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	topic_path(topic),
+	:method => :delete,
+	:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+	:class => 'btn btn-mini btn-danger' %>
+    <% end %>
+  
+  <br />
+  <br />
+
   <h3>Comments</h3>
+
   <% topic.comments.each do |comment| %>
     <fieldset>
       <p><strong>Author: </strong><%= comment.author %></p>
       <p><%= comment.body %></p>
     </fieldset>
+
+    <% if comment.author == current_user.email %>
+      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_topic_comment_path(topic, comment), :class => 'btn btn-mini' %>
+      
+      
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	  topic_comment_path(topic, comment),
+	  :method => :delete,
+	  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+	  :class => 'btn btn-mini btn-danger' %>
+
+    <% end %>
+    <br />
+    <br />
   <% end %>
-  
-  
+
+  <hr>
 <% end %>
-</table>
 
 <br />
-
-<%= link_to 'New Topic', new_topic_path %>
+<br />
+<br />
+ 
+<%= link_to "New Topic", new_topic_path, :class => 'btn btn-primary' %>

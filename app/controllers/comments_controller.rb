@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @topic = Topic.find(params[:topic_id])
-    @comment = @topic.find(params[:id])
+    @comment = @topic.comments.find(params[:id])
   end
 
   # POST /comments
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
     @comment = @topic.comments.find(params[:id])
 
     if @comment.update_attributes(params[:comment])
-        redirect_to topic_comments_url(@topic), notice: 'Comment was successfully updated.'
+        redirect_to topics_url(), notice: 'Comment was successfully updated.'
     else
       render action: "edit"
     end
@@ -60,6 +60,6 @@ class CommentsController < ApplicationController
     @comment = @topic.comments.find(params[:id])
     @comment.destroy
 
-    redirect_to topic_comments_url(@topic), notice: 'The comment was successfully deleted.'
+    redirect_to topics_url(), notice: 'The comment was successfully deleted.'
   end
 end
